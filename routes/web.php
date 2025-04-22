@@ -110,7 +110,7 @@ Route::get('/blog/{post?}', function ($post = null) {
  *
  */
 
-Route::get('/xxxx', function (Request $request) {
+Route::post('/request', function (Request $request) {
     // 送信されたデータを取得 - Request::input() ではなく直接プロパティとしてアクセス
     $name = $request->name;
     $message = $request->message;
@@ -151,6 +151,6 @@ Route::get('/message/received', function () {
  * 404エラーページを表示するために使用されます。
  * このルートは必ず他のすべてのルート定義の後に配置する必要があります。
  */
-// Route::xxxxxx(function () {
-//     return view('404');  // resources/views/404.blade.phpを表示
-// })->name('404');
+Route::fallback(function () {
+    return view('404');  // resources/views/404.blade.phpを表示
+})->name('404');
